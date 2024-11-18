@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hyphen AI - Home</title>
+    <link rel="icon" href="hyphenlogoimg.png" type="image/png" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* General Styles */
+      
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        background-color: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+      }
+
+      .header-logo {
+        max-width: 50px;
+        height: auto;
+        margin-right: 10px;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 24px;
+        flex: 1;
+      }
+
+      header .nav-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      header .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+
+      header .nav-links a:hover {
+        background-color: #555;
+      }
+
+      .login-buttons {
+        display: flex;
+        gap: 10px;
+        margin-left: 200px;
+      }
+
+      .login-buttons a {
+        padding: 8px 15px;
+        text-decoration: none;
+        color: #000000;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+
+      .login-buttons a.highlighted {
+        background-color: #00bcd4;
+      }
+
+      .login-buttons a:hover {
+        background-color: #0097a7;
+      }
+
+      .container {
+        flex: 1;
+        max-width: 1400px;
+        margin: 20px auto;
+        padding: 20px;
+      }
+
+      .section {
+        display: flex;
+        align-items: center;
+        margin-bottom: -20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .section img {
+        border-radius: 8px;
+        max-width: 200px;
+        height: auto;
+      }
+
+      .section .text {
+        flex: 1;
+        padding: 20px;
+      }
+
+      .section:nth-child(odd) {
+        flex-direction: row-reverse;
+      }
+
+      .section:nth-child(even) {
+        flex-direction: row;
+      }
+
+      h2 {
+        color: #004080;
+      }
+
+      p {
+        line-height: 1.6;
+      }
+
+      .key-benefits {
+        text-align: center;
+        margin-bottom: 20px;
+        margin-right: 30px;
+      }
+
+      .key-benefits h2 {
+        color: #004080;
+        margin-bottom: 20px;
+      }
+
+      .benefit-items {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .benefit-item {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        margin: 0 10px;
+        text-align: center;
+      }
+
+      .benefit-item i {
+        font-size: 50px;
+        margin-bottom: 15px;
+        color: #00bcd4;
+      }
+
+      .benefit-item h3 {
+        color: #333;
+        margin-bottom: 10px;
+      }
+      /* Footer Styles */
+      footer {
+        background-color: #333; /* Black background */
+        color: #fff; /* White text for visibility */
+        padding: 20px 0;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding: 20px;
+        background-color: #333; /* Dark grey for the container */
+      }
+
+      .footer-logo img {
+        height: 100px;
+        width: auto;
+      }
+
+      .footer-logo p {
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .footer-menu,
+      .footer-hyphen-ai-for,
+      .footer-policies,
+      .footer-resources {
+        margin: 0 20px;
+        max-width: 200px;
+      }
+
+      .footer-menu ul,
+      .footer-hyphen-ai-for ul,
+      .footer-policies ul,
+      .footer-resources ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-menu li,
+      .footer-hyphen-ai-for li,
+      .footer-policies li,
+      .footer-resources li {
+        margin: 8px 0;
+      }
+
+      .footer-menu a,
+      .footer-hyphen-ai-for a,
+      .footer-policies a,
+      .footer-resources a {
+        color: #fff; /* White text for visibility */
+        text-decoration: none;
+      }
+
+      .footer-menu a:hover,
+      .footer-hyphen-ai-for a:hover,
+      .footer-policies a:hover,
+      .footer-resources a:hover {
+        color: #00bcd4;
+      }
+
+      .footer-bottom {
+        background-color: #222;
+        padding: 10px 0;
+      }
+
+      .footer-bottom p {
+        margin: 0;
+        font-size: 14px;
+      }
+
+      /* Adjustments for footer positioning */
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      footer {
+        margin-top: auto; /* Pushes footer to the bottom */
+      }
+
+      .social-icons {
+        margin-top: 10px;
+      }
+
+      .social-icons a {
+        color: #fffcfc;
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 20px;
+        transition: color 0.3s;
+      }
+
+      .social-icons a:hover {
+        color: #00bcd4;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .login-buttons {
+          flex-direction: column;
+        }
+        .section {
+          flex-direction: column;
+          text-align: center;
+        }
+        .section img {
+          max-width: 100%;
+        }
+        .benefit-items {
+          flex-direction: column;
+        }
+        .benefit-item {
+          margin-bottom: 20px;
+        }
+      }
+      .interactive-ai-demo {
+        background-color: #f4f4f4;
+        padding: 50px;
+        text-align: center;
+      }
+
+      .demo-container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .demo-progress-bar {
+        background-color: #e0e0e0;
+        border-radius: 50px;
+        overflow: hidden;
+        height: 20px;
+        margin: 20px 0;
+      }
+
+      .progress {
+        background-color: #00bcd4;
+        height: 100%;
+        width: 50%;
+        border-radius: 50px;
+        transition: width 0.3s ease;
+      }
+
+      .demo-questions {
+        margin: 20px 0;
+      }
+
+      .demo-questions textarea {
+        width: 100%;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+      }
+
+      .submit-demo {
+        background-color: #00bcd4;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      .demo-feedback {
+        margin-top: 20px;
+        font-style: italic;
+      }
+      .ai-tech-highlights {
+        background-color: #f3f4f6;
+        color: #100606;
+        padding: 60px 20px;
+        text-align: center;
+      }
+
+      .highlight-container {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .tech-items {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .tech-item {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        width: 30%;
+        transition: transform 0.3s;
+      }
+
+      .tech-item i {
+        font-size: 50px;
+        margin-bottom: 15px;
+        color: #00bcd4;
+      }
+
+      .tech-item:hover {
+        transform: translateY(-10px);
+      }
+
+      @media (max-width: 768px) {
+        .tech-item {
+          width: 100%;
+        }
+      }
+      .pricing-plans {
+        background-color: #f4f4f4;
+        padding: 60px 20px;
+        text-align: center;
+      }
+
+      .plans-container {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .plan-items {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+      }
+
+      .plan-item {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        width: 30%;
+        transition: transform 0.3s;
+      }
+
+      .plan-item h3 {
+        color: #00bcd4;
+        margin-bottom: 20px;
+      }
+
+      .plan-item button {
+        background-color: #00bcd4;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .plan-item:hover {
+        transform: translateY(-10px);
+      }
+
+      @media (max-width: 768px) {
+        .plan-item {
+          width: 100%;
+        }
+      }
+      .comparison-section {
+        margin: 40px 0;
+        text-align: center;
+      }
+
+      .comparison-section h2 {
+        color: #004080;
+        margin-bottom: 20px;
+      }
+
+      .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .comparison-table th {
+        background-color: #f4f4f4;
+        font-size: 18px;
+        color: #333;
+      }
+
+      .comparison-table td {
+        font-size: 16px;
+      }
+
+      .comparison-table .right {
+        color: #4caf50;
+        font-size: 24px;
+      }
+
+      .comparison-table .wrong {
+        color: #f44336;
+        font-size: 24px;
+      }
+
+      .comparison-table tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      /* Hover effect */
+      .comparison-table tbody tr:hover {
+        background-color: #f9f9f9;
+      }
+
+      .process-walkthrough {
+        background-color: #f4f4f4;
+        padding: 60px 20px;
+        text-align: center;
+      }
+
+      .walkthrough-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .process-steps {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .step {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        width: 23%;
+        transition: transform 0.3s;
+      }
+
+      .step i {
+        font-size: 30px;
+        color: #00bcd4;
+        margin-bottom: 10px;
+      }
+
+      .step:hover {
+        transform: translateY(-10px);
+      }
+
+      @media (max-width: 768px) {
+        .step {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="hyphenlogoimg.png" alt="Hyphen AI Logo" class="header-logo" />
+      <h1>Hyphen AI</h1>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="testing.html">About</a>
+        <a href="#features">Features</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="login-buttons">
+        <a href="vardhanlogin.html" class="highlighted">User Login</a>
+        <a href="vardhanloginhr.html" class="highlighted">Organization Login/Register</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="section" id="features">
+        <div class="text">
+          <h2>AI-Powered Interviews</h2>
+          <p>
+            AI interviewers represent a significant advancement in the
+            recruitment process, leveraging sophisticated algorithms to analyze
+            both verbal and non-verbal cues to offer consistent and objective
+            evaluations. These AI systems utilize machine learning and natural
+            language processing (NLP) to interpret the nuances of spoken
+            language, assessing factors such as tone, word choice, and speech
+            patterns to gauge a candidate’s fit for a role.
+          </p>
+        </div>
+        <img src="ai interview.jpg" alt="AI Interview" />
+      </div>
+    </div>
+    <!-- Key Benefits Section -->
+    <div class="key-benefits">
+      <div class="highlight-container">
+        <h2>Key Benefits of Smart Hiring</h2>
+        <div class="benefit-items">
+          <div class="benefit-item">
+            <i class="fas fa-rocket"></i>
+            <h3>Faster Hiring</h3>
+            <p>
+              Reduce the time-to-hire with automated processes and smart
+              algorithms.
+            </p>
+          </div>
+          <div class="benefit-item">
+            <i class="fas fa-chart-line"></i>
+            <h3>Data-Driven Insights</h3>
+            <p>
+              Leverage data analytics for accurate and reliable hiring
+              decisions.
+            </p>
+          </div>
+          <div class="benefit-item">
+            <i class="fas fa-user-shield"></i>
+            <h3>Improved Security</h3>
+            <p>
+              Ensure a secure hiring process with AI-powered verification and
+              background checks.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="section" id="features">
+        <div class="text">
+          <h2>In-Depth Insights</h2>
+          <p>
+            Leverage advanced analytics tools to gain deep insights into
+            candidates' skills, strengths, and potential. Our AI evaluates
+            responses, behaviors, and other key indicators to provide you with
+            actionable data for better hiring decisions.
+          </p>
+        </div>
+        <img src="in depth sights.jpg" alt="AI Insights" />
+      </div>
+    </div>
+    <section class="ai-tech-highlights">
+      <div class="highlight-container">
+        <h2>Our AI Technology</h2>
+        <div class="tech-items">
+          <div class="tech-item">
+            <i class="fas fa-brain"></i>
+            <h3>Natural Language Processing (NLP)</h3>
+            <p>Analyze language nuances for better understanding.</p>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-robot"></i>
+            <h3>Machine Learning</h3>
+            <p>Constantly improving and learning from data.</p>
+          </div>
+          <div class="tech-item">
+            <i class="fas fa-chart-pie"></i>
+            <h3>Data Analytics</h3>
+            <p>Derive actionable insights from interview data.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="section" id="features">
+        <div class="text">
+          <h2>Seamless Integration</h2>
+          <p>
+            Streamline your hiring process and reduce time-to-hire with our AI
+            solutions. Automate repetitive tasks, schedule interviews with ease,
+            and keep track of all candidates in one centralized platform.
+          </p>
+        </div>
+        <img src="seamless.jpg" alt="Seamless Integration" />
+      </div>
+    </div>
+    <section class="process-walkthrough">
+      <div class="highlight-container">
+        <h2>AI Interview Process</h2>
+        <div class="process-steps">
+          <div class="step">
+            <i class="fas fa-sign-in-alt"></i>
+            <p>Step 1: Log In Using The Credentials Provided</p>
+          </div>
+          <div class="step">
+            <i class="fas fa-question-circle"></i>
+            <p>Step 2: Attend the Interview Powered By Hyphen AI</p>
+          </div>
+          <!--<div class="step">
+            <i class="fas fa-chart-line"></i>
+            <p>Step 3: Get Feedback</p>
+          </div>-->
+          <div class="step">
+            <i class="fas fa-user-check"></i>
+            <p>Step 3: Final Decision By HR</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div class="section" id="features">
+        <div class="text">
+          <div class="comparison-section">
+            <h2>Comparison with Traditional Hiring</h2>
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Key Factors</th>
+                  <th>Traditional Hiring</th>
+                  <th>AI Interview</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Time Efficiency</td>
+                  <td><i class="fas fa-times wrong"></i></td>
+                  <td><i class="fas fa-check right"></i></td>
+                </tr>
+                <tr>
+                  <td>Bias Reduction</td>
+                  <td><i class="fas fa-times wrong"></i></td>
+                  <td><i class="fas fa-check right"></i></td>
+                </tr>
+                <tr>
+                  <td>Data-Driven Insights</td>
+                  <td><i class="fas fa-times wrong"></i></td>
+                  <td><i class="fas fa-check right"></i></td>
+                </tr>
+                <tr>
+                  <td>Consistency</td>
+                  <td><i class="fas fa-times wrong"></i></td>
+                  <td><i class="fas fa-check right"></i></td>
+                </tr>
+                <tr>
+                  <td>Scalability</td>
+                  <td><i class="fas fa-times wrong"></i></td>
+                  <td><i class="fas fa-check right"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="interactive-ai-demo">
+      <div class="demo-container">
+        <h2>Try Our AI Interview</h2>
+        <p>Experience a quick demo of our AI-powered interview.</p>
+        <div class="demo-progress-bar">
+          <div class="progress"></div>
+        </div>
+        <div class="demo-questions">
+          <p><strong>Question 1:</strong> Describe your biggest strength.</p>
+          <textarea placeholder="Type your answer here..."></textarea>
+          <button class="submit-demo">Submit Answer</button>
+        </div>
+        <div class="demo-feedback">
+          <p>
+            AI Feedback:
+            <span class="feedback-text">Waiting for response...</span>
+          </p>
+        </div>
+      </div>
+    </section>
+    <!--<section class="pricing-plans">
+      <div class="plans-container">
+        <h2>Choose Your Plan</h2>
+        <div class="plan-items">
+          <div class="plan-item">
+            <h3>Basic Plan</h3>
+            <p>Monthly / Yearly</p>
+            <ul>
+              <li>AI-Powered Interviews</li>
+              <li>Basic Analytics</li>
+              <li>Email Support</li>
+            </ul>
+            <button>Contant Us For Details</button>
+          </div>
+          <div class="plan-item">
+            <h3>Pro Plan</h3>
+            <p>Monthly / Yearly</p>
+            <ul>
+              <li>All Basic Features</li>
+              <li>Advanced Analytics</li>
+              <li>Priority Support</li>
+            </ul>
+            <button>Contant Us For Details</button>
+          </div>
+          <div class="plan-item">
+            <h3>Enterprise Plan</h3>
+            <p>Monthly / Yearly</p>
+            <ul>
+              <li>All Pro Features</li>
+              <li>Dedicated Account Manager</li>
+              <li>Custom Integrations</li>
+            </ul>
+            <button>Contant Us For Details</button>
+          </div>
+        </div>
+      </div>
+    </section>-->
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-logo">
+          <img src="hyphenlogoimg.png" alt="Hyphen AI Logo" />
+          <p>
+            <strong>Hyphen AI</strong><br />Streamlining the interview process
+            with AI-driven technology for faster, more efficient hiring.
+          </p>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/" target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.linkedin.com/" target="_blank"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a href="https://www.youtube.com/" target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a href="https://twitter.com/" target="_blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-menu">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#how-it-works">How it works?</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-hyphen-ai-for">
+          <h4>Hyphen AI for</h4>
+          <ul>
+            <li><a href="#Organization">Organizations</a></li>
+            <li><a href="#universities">Universities</a></li>
+            <li><a href="#partners">Partners (API)</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-policies">
+          <h4>Policies</h4>
+          <ul>
+            <li><a href="#cookie-policy">Cookie Policy</a></li>
+            <li><a href="#privacy-policy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-resources">
+          <h4>Resources</h4>
+          <ul>
+            <li>
+              <a href="#how-to-prepare">How to perform well in interview?</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Hyphen AI. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

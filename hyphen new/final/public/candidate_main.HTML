@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - AI Interviewer</title>
+    <link rel="stylesheet" href="cm.css">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo h1 {
+            color: #191212;
+            margin: 0;
+            padding-left: 20px;
+            font-size: 24px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #18bc9c;
+        }
+
+        .user-buttons a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #18bc9c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-right: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .user-buttons a.logout-btn {
+            background-color: #e74c3c;
+        }
+
+        .user-buttons a:hover {
+            background-color: #16a085;
+        }
+
+        main {
+            padding: 40px 20px;
+        }
+
+        .dashboard {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .mock-test-section, .video-interview-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 48%;
+        }
+
+        .mock-test-section h2, .video-interview-section h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .try-mock-test-btn, .join-video-interview-btn {
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .try-mock-test-btn:hover, .join-video-interview-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .ai-assistance-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #2c3e50;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        .ai-assistance-btn img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .tooltip {
+            display: none;
+        }
+
+        .ai-assistance-btn:hover .tooltip {
+            display: inline;
+            position: absolute;
+            bottom: 70px;
+            right: 10px;
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>HYPHEN AI</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Help Center</a></li>
+            </ul>
+            <div class="user-buttons">
+                <a href="statustrack.html" class="profile-btn">My Profile</a>
+                <a href="index.html" class="logout-btn">Log Out</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="dashboard">
+            <div class="mock-test-section">
+                <h2>Mock Test</h2>
+                <p>Ensure that the device specification meets the criteria.</p>
+                <a href="user_mock_test.HTML" class="try-mock-test-btn">Try Mock Test</a>
+            </div>
+
+            <div class="video-interview-section">
+                <h2>Join Video Interview</h2>
+                <p>Click below to join your scheduled video interview.</p>
+                <a href="finalonelaoding2.html" class="join-video-interview-btn">Join Interview</a>
+            </div>
+        </section>
+    </main>
+
+    <a href="https://app.droxy.ai/guest-agent/66bb739343fc017fe11285ae" class="ai-assistance-btn">
+        <img src="hyplogotemp1.jpg" alt="AI Assistance">
+        <span class="tooltip">AI Assistance</span>
+    </a>
+</body>
+</html>

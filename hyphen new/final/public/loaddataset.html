@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Dataset Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            position: relative;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .section p {
+            margin: 5px 0;
+        }
+        .highlight {
+            font-weight: bold;
+        }
+        .dataset-selection, .search-filter, .metadata-input, .browse-section, .historical-data {
+            margin-top: 20px;
+        }
+        .dataset-selection select, .dataset-selection input[type="file"], .dataset-selection textarea {
+            padding: 8px;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .dataset-selection button, .submit-button, .back-button {
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .dataset-selection button {
+            background-color: #0056b3;
+        }
+        .dataset-selection button:hover {
+            background-color: #004494;
+        }
+        .submit-button {
+            background-color: #28a745;
+        }
+        .submit-button:hover {
+            background-color: #218838;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+        .back-arrow {
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+            font-size: 20px;
+            text-decoration: none;
+            color: black;
+        }
+        .submit-bottom-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .submit-bottom-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button (Arrow) -->
+        <a href="previous-page.html" class="back-arrow">&larr; Back</a>
+        
+        <h1>HR Dataset Management</h1>
+
+        <!-- Dataset Selection -->
+        <div class="section dataset-selection">
+            <h2>Select Dataset Type</h2>
+            <p>Please select the type of dataset you wish to manage:</p>
+            <select id="datasetType" onchange="showOptions()">
+                <option value="">--Select Dataset Type--</option>
+                <option value="text">Text-Based</option>
+                <option value="numeric">Numeric</option>
+                <option value="file">File-Based</option>
+            </select>
+        </div>
+
+        <!-- Text-Based Dataset Management -->
+        <div class="section" id="textDataset" style="display: none;">
+            <h2>Text-Based Dataset Management</h2>
+            <p><span class="highlight">Instructions:</span> Enter your text-based data or modify questions below:</p>
+            <textarea id="textData" rows="10" placeholder="Enter text-based data or questions here..." style="width: 100%; padding: 10px;"></textarea>
+        </div>
+
+        <!-- Numeric Dataset Management -->
+        <div class="section" id="numericDataset" style="display: none;">
+            <h2>Numeric Dataset Management</h2>
+            <p><span class="highlight">Instructions:</span> Enter your numeric data or modify questions below:</p>
+            <textarea id="numericData" rows="10" placeholder="Enter numeric data or questions here..." style="width: 100%; padding: 10px;"></textarea>
+        </div>
+
+        <!-- File-Based Dataset Management -->
+        <div class="section" id="fileDataset" style="display: none;">
+            <h2>File-Based Dataset Management</h2>
+            <p><span class="highlight">Instructions:</span> Upload your file-based dataset below:</p>
+            <input type="file" id="datasetFile" />
+        </div>
+
+        <!-- Browse Existing Datasets -->
+        <div class="section browse-section">
+            <h2>Browse Existing Datasets</h2>
+            <input type="file" id="browseFile" onchange="browseDataset()" />
+            <button onclick="browseDataset()">Browse Dataset</button>
+            <div id="fileContent" style="margin-top: 10px;">Dataset content will be displayed here...</div>
+        </div>
+
+        <!-- Historical Data Tracking -->
+        <div class="section historical-data">
+            <h2>Previously Used Datasets</h2>
+            <p>Select a dataset type to view previously used datasets:</p>
+            <select id="historicalDataType" onchange="viewHistoricalData()">
+                <option value="">--Select Dataset Type--</option>
+                <option value="text">Text-Based</option>
+                <option value="numeric">Numeric</option>
+                <option value="file">File-Based</option>
+            </select>
+            <div id="historicalDataContent">
+                <!-- Previously used datasets will be displayed here -->
+            </div>
+            <button class="submit-bottom-button" onclick="submit()">Submit </button>
+        </div>
+    </div>
+
+    <script>
+        // Show the appropriate section based on dataset type
+        function showOptions() {
+            document.getElementById('textDataset').style.display = 'none';
+            document.getElementById('numericDataset').style.display = 'none';
+            document.getElementById('fileDataset').style.display = 'none';
+
+            var selectedType = document.getElementById('datasetType').value;
+
+            if (selectedType === 'text') {
+                document.getElementById('textDataset').style.display = 'block';
+            } else if (selectedType === 'numeric') {
+                document.getElementById('numericDataset').style.display = 'block';
+            } else if (selectedType === 'file') {
+                document.getElementById('fileDataset').style.display = 'block';
+            }
+        }
+
+        // Save text data (for demonstration purposes)
+        function saveTextData() {
+            alert('Text data submitted successfully!');
+            // Implement save functionality here
+        }
+
+        // Save numeric data (for demonstration purposes)
+        function saveNumericData() {
+            alert('Numeric data submitted successfully!');
+            // Implement save functionality here
+        }
+
+        // Upload file (for demonstration purposes)
+        function uploadFile() {
+            alert('File submitted successfully!');
+            // Implement file upload functionality here
+        }
+
+        // Browse dataset and display content
+        function browseDataset() {
+            var fileInput = document.getElementById('browseFile');
+            var file = fileInput.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('fileContent').textContent = event.target.result;
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        // View previously used datasets
+        function viewHistoricalData() {
+            var historicalDataType = document.getElementById('historicalDataType').value;
+            var historicalDataContent = document.getElementById('historicalDataContent');
+            historicalDataContent.innerHTML = '';
+
+            // Simulate fetching previously used datasets (for demonstration purposes)
+            if (historicalDataType === 'text') {
+                historicalDataContent.innerHTML = '<ul><li>Sample Text Dataset 1</li><li>Sample Text Dataset 2</li></ul>';
+            } else if (historicalDataType === 'numeric') {
+                historicalDataContent.innerHTML = '<ul><li>Sample Numeric Dataset 1</li><li>Sample Numeric Dataset 2</li></ul>';
+            } else if (historicalDataType === 'file') {
+                historicalDataContent.innerHTML = '<ul><li>Sample File Dataset 1</li><li>Sample File Dataset 2</li></ul>';
+            }
+        }
+
+        // Submit historical data (for demonstration purposes)
+        function submitHistoricalData() {
+            alert('Historical data submitted successfully!');
+            // Implement submission functionality here
+        }
+    </script>
+</body>
+</html>

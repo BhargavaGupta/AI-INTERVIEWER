@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Management - Hyphen AI</title>
+    <link rel="stylesheet" href="hr.css">
+</head>
+<body>
+    <header>
+        <h1>HR Management</h1>
+        <div class="nav-links">
+            <a href="mainhomepage.html">Home</a>
+            <a href="hr-management.html">HR Management</a>
+            <!-- Add other relevant links -->
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="job-posting">
+            <h2>Post Job Roles</h2>
+            <form id="job-post-form">
+                <label for="job-title">Job Title:</label>
+                <input type="text" id="job-title" name="job-title" required>
+
+                <label for="job-description">Job Description:</label>
+                <textarea id="job-description" name="job-description" required></textarea>
+
+                <label for="job-requirements">Job Requirements:</label>
+                <textarea id="job-requirements" name="job-requirements" required></textarea>
+
+                <button type="submit">Post Job</button>
+            </form>
+        </section>
+
+        <section id="slot-allocation">
+            <h2>Allocate Interview Slots</h2>
+            <form id="slot-allocation-form">
+                <label for="candidate-name">Candidate Name:</label>
+                <input type="text" id="candidate-name" name="candidate-name" required>
+
+                <label for="interview-date">Interview Date:</label>
+                <input type="date" id="interview-date" name="interview-date" required>
+
+                <label for="interview-time">Interview Time:</label>
+                <input type="time" id="interview-time" name="interview-time" required>
+
+                <button type="submit">Allocate Slot</button>
+            </form>
+        </section>
+
+        <section id="profile-management">
+            <h2>Manage HR Profile</h2>
+            <form id="profile-management-form">
+                <label for="hr-name">Name:</label>
+                <input type="text" id="hr-name" name="hr-name" required>
+
+                <label for="hr-email">Email:</label>
+                <input type="email" id="hr-email" name="hr-email" required>
+
+                <label for="hr-password">Password:</label>
+                <input type="password" id="hr-password" name="hr-password" required>
+
+                <button type="submit">Update Profile</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Hyphen AI. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,106 @@
+/* Reset some default styles */
+body, h1, form {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set up the background */
+body {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+}
+body:hover{
+    background: aqua;
+    
+}
+/* Center the login card */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.login-card {
+    background: #fff;
+    color: #333;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+}
+
+/* Style the logo */
+.logo {
+    width: 120px;
+    margin-bottom: 1rem;
+}
+
+/* Style the heading */
+h1 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.75rem;
+}
+
+/* Style the form elements */
+.input-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 0.875rem;
+}
+
+button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background: #2575fc;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #b95f1a;
+}
+
+/* Style additional links */
+.forgot-password {
+    display: block;
+    margin-top: 1rem;
+    color: #3b25fc;
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}

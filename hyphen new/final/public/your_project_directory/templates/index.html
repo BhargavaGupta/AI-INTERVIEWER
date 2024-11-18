@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Datasets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .dataset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .dataset {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .dataset:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .dataset h2 {
+            font-size: 1.5em;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        .dataset p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .dataset a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        .dataset a:hover {
+            background-color: #45a049;
+        }
+        .upload-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .upload-section input[type="file"] {
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .upload-section button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .upload-section button:hover {
+            background-color: #45a049;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            color: black;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        .popup.show {
+            display: block;
+        }
+        .popup button {
+            margin-top: 10px;
+            background-color: #ffffff;
+            color:black;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .popup button:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Available Datasets</h1>
+        <div class="dataset-grid">
+            <!-- Dataset 1 -->
+            <div class="dataset">
+                <h2>Dataset 1</h2>
+                <p>Data Scientist</p>
+                <a href="/datasets/dataset1.csv" download>Download Dataset 1</a>
+            </div>
+
+            <!-- Dataset 2 -->
+            <div class="dataset">
+                <h2>Dataset 2</h2>
+                <p>Fullstack Developer</p>
+                <a href="/datasets/dataset2.csv" download>Download Dataset 2</a>
+            </div>
+
+            <!-- Dataset 3 -->
+            <div class="dataset">
+                <h2>Dataset 3</h2>
+                <p>Senior Analyst</p>
+                <a href="/datasets/dataset3.csv" download>Download Dataset 3</a>
+            </div>
+
+            <!-- Dataset 4 -->
+            <div class="dataset">
+                <h2>Dataset 4</h2>
+                <p>DevOps</p>
+                <a href="/datasets/dataset4.csv" download>Download Dataset 4</a>
+            </div>
+
+            <!-- Dataset 5 -->
+            <div class="dataset">
+                <h2>Dataset 5</h2>
+                <p>UI/UX Designer</p>
+                <a href="/datasets/dataset5.csv" download>Download Dataset 5</a>
+            </div>
+
+            <!-- Dataset 6 -->
+            <div class="dataset">
+                <h2>Dataset 6</h2>
+                <p>Aptitude1</p>
+                <a href="/datasets/dataset6.csv" download>Download Dataset 6</a>
+            </div>
+
+            <!-- Dataset 7 -->
+            <div class="dataset">
+                <h2>Dataset 7</h2>
+                <p>Aptitude2</p>
+                <a href="/datasets/dataset7.csv" download>Download Dataset 7</a>
+            </div>
+
+            <!-- Dataset 8 -->
+            <div class="dataset">
+                <h2>Dataset 8</h2>
+                <p>AI</p>
+                <a href="/datasets/dataset8.csv" download>Download Dataset 8</a>
+            </div>
+        </div>
+
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <h2>Upload New Dataset</h2>
+            <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".csv" required>
+                <button type="submit">Upload Dataset</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Popup Message -->
+    <div id="popup" class="popup">
+        <p>Your dataset has been uploaded successfully!</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+
+    <script>
+        document.getElementById('upload-form').onsubmit = function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            var formData = new FormData(this);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', this.action, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    showPopup();
+                } else {
+                    alert('An error occurred while uploading the file.');
+                }
+            };
+            xhr.send(formData);
+        };
+
+        function showPopup() {
+            document.getElementById('popup').classList.add('show');
+        }
+
+        function closePopup() {
+            document.getElementById('popup').classList.remove('show');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Sky Background</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364); /* Night sky gradient */
+            font-family: Arial, sans-serif;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            animation: moveStars 200s linear infinite;
+        }
+
+        .stars::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(white, transparent);
+            background-size: 50px 50px;
+            transform: translateX(-50%);
+            opacity: 0.5;
+        }
+
+        @keyframes moveStars {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .shooting-stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(45deg, white, transparent);
+            opacity: 0;
+            transform: translateX(-100%);
+            animation: shoot 2s ease-out infinite;
+        }
+
+        @keyframes shoot {
+            0% { opacity: 1; transform: translateX(0) translateY(0) rotate(45deg); }
+            100% { opacity: 0; transform: translateX(-100vw) translateY(-100vh) rotate(45deg); }
+        }
+
+        .clouds {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: url('https://i.imgur.com/2Ine1J3.png') repeat-x;
+            background-size: cover;
+            animation: moveClouds 120s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes moveClouds {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="shooting-stars"></div>
+    <div class="clouds"></div>
+
+    <script>
+        function createShootingStar() {
+            const shootingStar = document.createElement('div');
+            shootingStar.classList.add('shooting-star');
+            shootingStar.style.top = `${Math.random() * window.innerHeight}px`;
+            shootingStar.style.left = `${Math.random() * window.innerWidth}px`;
+            shootingStar.style.animationDelay = `${Math.random() * 5}s`;
+            document.querySelector('.shooting-stars').appendChild(shootingStar);
+
+            // Remove the shooting star after its animation completes
+            setTimeout(() => {
+                shootingStar.remove();
+            }, 2000);
+        }
+
+        setInterval(createShootingStar, 1000); // Create a new shooting star every second
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+        .back-button:before {
+            content: "←";
+            margin-right: 8px;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #f4f4f4;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"], input[type="file"], input[type="email"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2b00ff;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()" class="back-button">Back</a>
+
+    <div class="container">
+        <h2>Submit Your Resume</h2>
+        <form id="resumeForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="position">Position Applied For:</label>
+            <input type="text" id="position" name="position" required>
+
+            <label for="resume">Upload Resume:</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('resumeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Simulate form submission and storage (in a real app, this would involve backend code)
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const position = document.getElementById('position').value;
+            const resume = document.getElementById('resume').files[0].name;
+
+            // Store resume details in localStorage for simplicity
+            let resumes = JSON.parse(localStorage.getItem('resumes')) || [];
+            resumes.push({ name, email, position, resume });
+            localStorage.setItem('resumes', JSON.stringify(resumes));
+
+            alert('Resume submitted successfully!');
+            document.getElementById('resumeForm').reset();
+        });
+    </script>
+</body>
+</html>

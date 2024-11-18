@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Mock Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 10px;
+            min-height: 70px;
+            border-bottom: #77A1D3 3px solid;
+        }
+
+        header h1 {
+            float: left;
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        nav {
+            float: right;
+            margin-top: 10px;
+        }
+
+        nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-left: 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        main {
+            padding: 20px;
+            background: #fff;
+            margin-top: 10px;
+        }
+
+        .intro {
+            margin-bottom: 20px;
+        }
+
+        .mock-test .question {
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .mock-test textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        .mock-test button {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .mock-test button:hover {
+            background: #555;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .timer, .result {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .result {
+            padding: 10px;
+            background: #f4f4f4;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .navigation {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Hyphen AI</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="intro">
+                <h2>Mock Test</h2>
+                <p>Prepare for your AI interview with our comprehensive mock test. Answer the questions below to test your knowledge and get instant feedback.</p>
+                <div class="timer">Time Remaining: <span id="timer">10:00</span></div>
+            </section>
+
+            <section class="mock-test">
+                <form id="mockTestForm" onsubmit="calculateAccuracy(event)">
+                    <div class="question" id="q0">
+                        <label for="q0textarea">1. Explain Artificial Intelligence and give its applications.</label>
+                        <textarea id="q0textarea" name="q0" rows="4" required></textarea>
+                    </div>
+
+                    <div class="question" id="q1">
+                        <label for="q1textarea">2. What is the full form of LSTM?</label>
+                        <textarea id="q1textarea" name="q1" rows="4" required></textarea>
+                    </div>
+
+                    <div class="question" id="q2">
+                        <label for="q2textarea">3. What is the purpose of Boltzmann machine?</label>
+                        <textarea id="q2textarea" name="q2" rows="4" required></textarea>
+                    </div>
+
+                    <div class="question" id="q3">
+                        <label for="q3textarea">4. Are chatbots derived from NLP?</label>
+                        <textarea id="q3textarea" name="q3" rows="4" required></textarea>
+                    </div>
+
+                    <div class="question" id="q4">
+                        <label for="q4textarea">5. How is NLTK different from spaCy?</label>
+                        <textarea id="q4textarea" name="q4" rows="5" required></textarea>
+                    </div>
+
+                    <div class="question" id="q5">
+                        <label for="q5textarea">6. What is Deep Learning based on?</label>
+                        <textarea id="q5textarea" name="q5" rows="4" required></textarea>
+                    </div>
+
+                    <div class="question" id="q6">
+                        <label for="q6textarea">7. What are the pros of cognitive computing?</label>
+                        <textarea id="q6textarea" name="q6" rows="7" required></textarea>
+                    </div>
+
+                    <div class="navigation">
+                        <button type="button" id="prevBtn" onclick="changeQuestion(-1)">Previous</button>
+                        <button type="button" id="nextBtn" onclick="changeQuestion(1)">Next</button>
+                        <button type="submit" id="submitBtn" style="display: none;">Submit Answers</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="result" id="result"></section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AI Interview Prep. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const answers = {
+            q0: "Artificial Intelligence is a branch of computer science...",
+            q1: "Long Short-Term Memory",
+            q2: "The purpose of a Boltzmann machine is to optimize...",
+            q3: "Yes, chatbots are derived from Natural Language Processing.",
+            q4: "NLTK is a library for processing textual data...",
+            q5: "Deep Learning is based on artificial neural networks.",
+            q6: "Pros of cognitive computing include better decision-making..."
+        };
+
+        function simpleSimilarity(str1, str2) {
+            let commonChars = 0;
+            for (let i = 0; i < str1.length; i++) {
+                if (str2.includes(str1[i])) {
+                    commonChars++;
+                }
+            }
+            return (commonChars / Math.max(str1.length, str2.length)) * 100;
+        }
+
+        let currentQuestion = 0;
+
+        function changeQuestion(direction) {
+            const questions = document.querySelectorAll('.question');
+            questions[currentQuestion].style.display = 'none';
+            currentQuestion += direction;
+
+            if (currentQuestion < 0) currentQuestion = 0;
+            if (currentQuestion >= questions.length) currentQuestion = questions.length - 1;
+
+            questions[currentQuestion].style.display = 'block';
+            document.getElementById('prevBtn').style.display = currentQuestion === 0 ? 'none' : 'inline';
+            document.getElementById('nextBtn').style.display = currentQuestion === questions.length - 1 ? 'none' : 'inline';
+            document.getElementById('submitBtn').style.display = currentQuestion === questions.length - 1 ? 'inline' : 'none';
+        }
+
+        function calculateAccuracy(event) {
+            event.preventDefault();
+
+            let totalAccuracy = 0;
+            let count = 0;
+
+            for (let key in answers) {
+                const userAnswer = document.getElementById(`${key}textarea`).value.trim();
+                const correctAnswer = answers[key].trim();
+
+                const similarity = simpleSimilarity(userAnswer, correctAnswer);
+                totalAccuracy += similarity;
+                count++;
+            }
+
+            const averageAccuracy = (totalAccuracy / count).toFixed(2);
+            const feedback = provideFeedback(averageAccuracy);
+
+            document.getElementById('result').innerText = `Overall Accuracy: ${averageAccuracy}%\n${feedback}`;
+        }
+
+        function provideFeedback(accuracy) {
+            if (accuracy == 100) {
+                return "Excellent! You got it perfect.";
+            } else if (accuracy >= 80) {
+                return "Great job! You're very close.";
+            } else if (accuracy >= 60) {
+                return "Good effort, but there's room for improvement.";
+            } else if (accuracy >= 40) {
+                return "Not bad, but you might want to review the material.";
+            } else {
+                return "It seems there's a lot to review. Keep practicing!";
+            }
+        }
+
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            const interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    alert('Time is up! Submitting your answers.');
+                    document.getElementById('mockTestForm').submit();
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            const tenMinutes = 60 * 10;
+            const display = document.querySelector('#timer');
+            startTimer(tenMinutes, display);
+
+            // Initialize the first question
+            changeQuestion(0);
+        };
+    </script>
+</body>
+</html>
+

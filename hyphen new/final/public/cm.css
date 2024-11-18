@@ -1,0 +1,204 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff; /* Milk white background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #2e2b2b; /* Bright red */
+    color: #333;
+    padding: 20px 0;
+    border-bottom: 3px solid #000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    background-color: #fff;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #000;
+    margin: 0;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #fff;
+}
+
+.user-buttons {
+    display: flex;
+}
+
+.user-buttons a {
+    margin-left: 70px;
+    margin-right: -60px;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: #000f;
+    background-color: #fff;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.user-buttons a:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+main {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.mock-test-section, .video-interview-section {
+    background-color: #f4f4f4; /* Grayish white */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    flex-basis: calc(50% - 20px);
+    min-width: 280px;
+    text-align: center;
+}
+
+.mock-test-section h2, .video-interview-section h2 {
+    color: #004b8d;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mock-test-section p, .video-interview-section p {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.try-mock-test-btn, .join-video-interview-btn {
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.try-mock-test-btn:hover, .join-video-interview-btn:hover {
+    background-color: #000;
+    transform: scale(1.05);
+}
+
+.interview-schedule table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.interview-schedule th, .interview-schedule td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+    font-size: 14px;
+}
+
+.interview-schedule thead {
+    background-color: #000;
+    color: #fff;
+}
+
+.interview-schedule tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.interview-schedule tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* AI Assistance Floating Button */
+.ai-assistance-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px; /* Adjust width as needed */
+    height: 60px; /* Adjust height as needed */
+}
+
+.ai-assistance-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures the image maintains aspect ratio */
+}
+
+.ai-assistance-btn .tooltip {
+    display: none;
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    background-color: #fff;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.ai-assistance-btn:hover {
+    background-color: #fff;
+    transform: scale(1.1);
+}
+
+.ai-assistance-btn:hover .tooltip {
+    display: block;
+}

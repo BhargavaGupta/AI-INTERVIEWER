@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Candidate Profile</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        box-sizing: border-box;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+
+      /* Header */
+      .header {
+        display: flex;
+        justify-content: space-between; /* Distribute space between elements */
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #333;
+        color: white;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        box-sizing: border-box;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .header nav {
+        display: flex;
+        align-items: center;
+        margin-left: auto; /* Push navigation to the right */
+      }
+
+      .header nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 20px;
+        font-size: 18px;
+      }
+
+      .header nav a:hover {
+        text-decoration: underline;
+      }
+
+      .header nav .logout-button {
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;
+        margin-left: 500px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .header nav .logout-button:hover {
+        background-color: darkred;
+      }
+
+      /* Main Content */
+      .main-content {
+        padding: 80px 20px 60px; /* Extra padding to account for fixed header and footer */
+      }
+
+      /* Profile Section */
+      .profile-container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .profile-container h2 {
+        margin-bottom: 20px;
+      }
+
+      .profile-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .profile-pic img {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+      }
+
+      .profile-details table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .profile-details th,
+      .profile-details td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+      }
+
+      .profile-details th {
+        background-color: #f4f4f4;
+      }
+
+      /* Status Section */
+      .status-section {
+        text-align: center;
+        margin-top: 40px;
+        background-color: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 100%;
+      }
+
+      .status-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        padding: 0 40px;
+      }
+
+      .status-line::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 40px;
+        right: 40px;
+        height: 4px;
+        background-color: #e0e0e0;
+        z-index: 0;
+      }
+
+      .status-line::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 40px;
+        width: 50%;
+        height: 4px;
+        background-color: #4caf50;
+        z-index: 1;
+        animation: progress-animation 5s forwards;
+      }
+
+      .status-dot {
+        position: relative;
+        background-color: #e0e0e0;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .status-dot.completed {
+        background-color: #4caf50;
+      }
+
+      .status-dot.current {
+        background-color: #f49609;
+        animation: pulse 0.75s infinite;
+      }
+      .status-dot.incomplete {
+        background-color: transparent;
+        border: 2px solid #4caf50;
+      }
+
+      .status-dot.notselect {
+        background-color: #ed0707;
+        border: 2px solid #ed0707;
+      }
+
+      .status-dot::after {
+        content: attr(data-stage);
+        position: absolute;
+        top: 50px;
+        width: 140px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 14px;
+        color: #333;
+      }
+
+      @keyframes progress-animation {
+        from {
+          width: 0;
+        }
+        to {
+          width: 50%;
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 165, 38, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 20px rgba(255, 165, 38, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 165, 38, 0);
+        }
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #333;
+        color: white;
+        padding: 10px 0;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      .footer p {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <h1>Hyphen AI</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <button class="logout-button">Logout</button>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Profile Container -->
+      <section class="profile-container">
+        <h2>Profile</h2>
+        <div class="profile-section">
+          <div class="profile-pic">
+            <img src="namo.png" alt="Profile Picture" />
+          </div>
+          <div class="profile-details">
+            <table>
+              <tr>
+                <th>Name</th>
+                <td>Namo Sai</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td>namohero123@gmail.com</td>
+              </tr>
+              <tr>
+                <th>Mobile</th>
+                <td>+91 98765 98765</td>
+              </tr>
+              <tr>
+                <th>Applied for</th>
+                <td>Software Developer</td>
+              </tr>
+              <tr>
+                <th>Date of Birth</th>
+                <td>Feb 30, 2003</td>
+              </tr>
+              <tr>
+                <th>Education</th>
+                <td>B.Tech in Eletronics and Communication Engineering</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Status Tracking Section -->
+      <section class="status-section">
+        <h2>Track Your Interview Status</h2>
+        <div class="status-line">
+          <div class="status-dot completed" data-stage="Applied"></div>
+          <div
+            class="status-dot completed"
+            data-stage="Schedule Your Exam"
+          ></div>
+          <div
+            class="status-dot current"
+            data-stage="Interview Powered By Hyphen AI"
+          ></div>
+          <div class="status-dot incomplete" data-stage="Review By HR"></div>
+          <div class="status-dot incomplete" data-stage="Shorlisted"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 Hyphen AI. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function updateStatus(currentStage) {
+        const dots = document.querySelectorAll(".status-dot");
+        let stageReached = false;
+
+        dots.forEach((dot) => {
+          if (dot.getAttribute("data-stage") === currentStage) {
+            stageReached = true;
+            dot.classList.add("current");
+          }
+
+          if (!stageReached) {
+            dot.classList.add("completed");
+          }
+        });
+      }
+
+      // Example: Update status to "Online Interview Powered By Hyphen AI"
+      updateStatus("Online Interview Powered By Hyphen AI");
+    </script>
+  </body>
+</html>

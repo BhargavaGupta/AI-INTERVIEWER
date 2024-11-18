@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interviewer Exam Guidelines</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Adjusted to allow top heading */
+            height: 100vh;
+        }
+        .header {
+            background-color: #007bff;
+            color: #ffffff;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            text-align: left;
+            position: relative; /* Added for positioning the back arrow */
+            margin-top: 20px; /* Added space between header and container */
+        }
+        .back-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            color: #007bff;
+            cursor: pointer;
+        }
+        h1 {
+            color:black;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #ffffff;
+            padding: 10px;
+        }
+        .guidelines {
+            background-color: #e7f1ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 20px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 15px;
+        }
+        ul {
+            margin: 10px 0;
+            padding: 0;
+            list-style-type: disc;
+            max-width: 100%;
+        }
+        ul li {
+            margin: 10px 0;
+        }
+        .important {
+            font-weight: bold;
+            color: #b30000;
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Exam Guidelines</h1>
+    </div>
+    <div class="container">
+        <div class="back-arrow" onclick="goBack()">&#8592;</div> <!-- Back arrow added -->
+        <h1>AI Interviewer Exam Guidelines</h1>
+
+        <div class="guidelines">
+            <h2>Before the Exam</h2>
+            <ul>
+                <li><strong>Arrive Early:</strong> Ensure you are online and ready at least 15 minutes before the scheduled start time of the exam.</li>
+                <li><strong>Identification:</strong> Make sure you have a valid ID ready for verification if required.</li>
+                <li><strong>Technical Setup:</strong> Check your internet connection, camera, and microphone to ensure they are working properly.</li>
+                <li><strong>Environment:</strong> Choose a quiet, well-lit place for the exam with minimal distractions.</li>
+            </ul>
+
+            <h2>During the Exam</h2>
+            <h3>Dos</h3>
+            <ul>
+                <li><strong>Read Instructions Carefully:</strong> Follow all instructions provided by the AI interviewer.</li>
+                <li><strong>Manage Your Time:</strong> Allocate time wisely between questions and ensure you answer all parts.</li>
+                <li><strong>Stay Calm:</strong> Maintain composure and focus throughout the exam.</li>
+                <li><strong>Ask for Clarification:</strong> If you don't understand a question, ask the AI for clarification.</li>
+            </ul>
+            <h3>Don'ts</h3>
+            <ul>
+                <li><strong>Do Not Engage in Distractions:</strong> Avoid any activities that could distract you from the exam.</li>
+                <li><strong>Do Not Use Unauthorized Aids:</strong> Refrain from using external resources or unauthorized materials.</li>
+                <li><strong>Do Not Speak to Others:</strong> Avoid communicating with others during the exam unless necessary for technical issues.</li>
+                <li><strong>Do Not Leave the Exam:</strong> Remain in the exam environment until the exam is completed or you are instructed otherwise.</li>
+            </ul>
+        </div>
+
+        <h3 class="important">Good luck on your exam!</h3>
+
+        <button id="nextButton">Next</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        
+        document.getElementById('nextButton').addEventListener('click', function() {
+            window.location.href = "http://localhost:3000/"; 
+        });
+
+        
+    </script>
+</body>
+</html>

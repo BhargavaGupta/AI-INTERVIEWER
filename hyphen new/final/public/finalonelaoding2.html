@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading...</title>
+    <style>
+      /* General Styles */
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #121212;
+        font-family: "Arial", sans-serif;
+        color: #fff;
+        overflow: hidden;
+      }
+
+      /* Loader Container */
+      .loader-container {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Animated Lines */
+      .line {
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background: rgba(0, 255, 255, 0.7);
+        transform-origin: center;
+        animation: line-animation 2s linear infinite;
+      }
+
+      .line:nth-child(1) {
+        transform: rotate(0deg);
+        animation-delay: 0s;
+      }
+
+      .line:nth-child(2) {
+        transform: rotate(90deg);
+        animation-delay: 0.5s;
+      }
+
+      .line:nth-child(3) {
+        transform: rotate(45deg);
+        animation-delay: 1s;
+      }
+
+      .line:nth-child(4) {
+        transform: rotate(-45deg);
+        animation-delay: 1.5s;
+      }
+
+      @keyframes line-animation {
+        0% {
+          transform: scaleY(0) rotate(0deg);
+          opacity: 0;
+        }
+        50% {
+          transform: scaleY(1) rotate(180deg);
+          opacity: 1;
+        }
+        100% {
+          transform: scaleY(0) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Central Circuit Element */
+      .circuit {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 4px solid rgba(0, 255, 255, 0.8);
+        background: transparent;
+        animation: pulse 2s infinite;
+      }
+
+      .circuit:before,
+      .circuit:after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 255, 255, 0.8);
+      }
+
+      .circuit:before {
+        width: 60px;
+        height: 60px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: small-pulse 2s infinite;
+      }
+
+      .circuit:after {
+        width: 120px;
+        height: 120px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-width: 1px;
+        animation: large-pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1) translate(-50%, -50%);
+          opacity: 0.7;
+        }
+        50% {
+          transform: scale(1.2) translate(-50%, -50%);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1) translate(-50%, -50%);
+          opacity: 0.7;
+        }
+      }
+
+      @keyframes small-pulse {
+        0% {
+          transform: scale(1) translate(-50%, -50%);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.2) translate(-50%, -50%);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1) translate(-50%, -50%);
+          opacity: 0.5;
+        }
+      }
+
+      @keyframes large-pulse {
+        0% {
+          transform: scale(1) translate(-50%, -50%);
+          opacity: 0.3;
+        }
+        50% {
+          transform: scale(1.5) translate(-50%, -50%);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1) translate(-50%, -50%);
+          opacity: 0.3;
+        }
+      }
+
+      /* Loading Text */
+      .loading-text {
+        margin-top: 20px;
+        font-size: 16px;
+        color: rgba(0, 255, 255, 0.9);
+        text-align: center;
+        font-weight: bold;
+      }
+
+      /* Typing Effect */
+      .typing-animation {
+        position: absolute;
+        bottom: 50px; /* Adjusted for spacing */
+        font-size: 18px;
+        color: rgba(0, 255, 255, 0.9);
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 2px solid rgba(0, 255, 255, 0.9); /* Optional: Simulate typing effect */
+        animation: typing 6s steps(40, end) forwards; /* Match duration with loading symbol */
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      /* Powered By Text */
+      .powered-by {
+        margin-top: 10px;
+        font-size: 14px;
+        color: rgba(0, 255, 255, 0.7);
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader-container">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="circuit"></div>
+    </div>
+    <div class="loading-text">Get ready to meet your AI Interviewer</div>
+    <div class="typing-animation">Powered By HyphenAI</div>
+    <div class="powered-by"></div>
+
+    <script>
+      // Check if loading was already done
+      if (!sessionStorage.getItem("loaded")) {
+        // Set a timeout to redirect after 7 seconds
+        setTimeout(function () {
+          sessionStorage.setItem("loaded", "true");
+          window.location.href = "guidelines.html"; // Replace with your target page
+        }, 7000); // 7000ms = 7 seconds
+      } else {
+        // Clear the session storage item if it exists (for future visits)
+        sessionStorage.removeItem("loaded");
+        // Redirect immediately if already loaded
+        window.location.href = "video-recording.html";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Resume Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+        .back-button:before {
+            content: "←";
+            margin-right: 8px;
+        }
+        .section {
+            flex: 1;
+            min-width: 300px;
+            margin: 10px;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #f4f4f4;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+        .assignment-controls {
+            display: flex;
+            flex-direction: column;
+        }
+        .assign-button, .add-slot-button {
+            background-color: #2b00ff;
+            color: #fff;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .add-slot-controls {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()" class="back-button">Back</a>
+
+    <div class="container">
+        <!-- Submitted Resumes Section -->
+        <div class="section">
+            <h2>Submitted Resumes</h2>
+            <ul id="resumeList">
+                <!-- Resumes will be populated here -->
+            </ul>
+        </div>
+
+        <!-- Available Slots Section -->
+        <div class="section">
+            <h2>Available Slots</h2>
+            <div class="add-slot-controls">
+                <label for="newSlot">Add New Slot:</label>
+                <input type="text" id="newSlot" placeholder="e.g., 11:00 AM - 12:00 PM">
+                <div class="add-slot-button" onclick="addSlot()">Add Slot</div>
+            </div>
+            <ul id="slotList">
+                <!-- Slots will be dynamically added here -->
+            </ul>
+        </div>
+
+        <!-- Slot Assignment Section -->
+        <div class="section">
+            <h2>Assign Slots to Candidates</h2>
+            <div class="assignment-controls">
+                <label for="resumeSelect">Select Resume:</label>
+                <select id="resumeSelect"></select>
+
+                <label for="slotSelect">Select Slot:</label>
+                <select id="slotSelect"></select>
+
+                <div class="assign-button" onclick="assignSlot()">Assign Slot</div>
+            </div>
+
+            <h3>Assignments</h3>
+            <ul id="assignmentList">
+                <!-- Assignments will be listed here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Initialize resumes and slots
+        const resumes = JSON.parse(localStorage.getItem('resumes')) || [];
+        const slots = JSON.parse(localStorage.getItem('slots')) || [];
+
+        const resumeList = document.getElementById('resumeList');
+        const resumeSelect = document.getElementById('resumeSelect');
+        const slotList = document.getElementById('slotList');
+        const slotSelect = document.getElementById('slotSelect');
+
+        // Populate resume list and dropdown
+        resumes.forEach((resume, index) => {
+            const li = document.createElement('li');
+            li.textContent = `${resume.name} - ${resume.position}`;
+            resumeList.appendChild(li);
+
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${resume.name} - ${resume.position}`;
+            resumeSelect.appendChild(option);
+        });
+
+        // Populate available slots
+        function updateSlots() {
+            slotList.innerHTML = '';
+            slotSelect.innerHTML = '';
+            slots.forEach((slot, index) => {
+                const li = document.createElement('li');
+                li.textContent = slot;
+                slotList.appendChild(li);
+
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = slot;
+                slotSelect.appendChild(option);
+            });
+        }
+
+        updateSlots();
+
+        // Add a new slot
+        function addSlot() {
+            const newSlot = document.getElementById('newSlot').value;
+            if (newSlot && !slots.includes(newSlot)) {
+                slots.push(newSlot);
+                localStorage.setItem('slots', JSON.stringify(slots));
+                updateSlots();
+            }
+        }
+
+        // Assign slot to resume
+        function assignSlot() {
+            const selectedResume = resumeSelect.options[resumeSelect.selectedIndex].text;
+            const selectedSlotIndex = slotSelect.selectedIndex;
+            const selectedSlot = slots[selectedSlotIndex];
+
+            const assignmentList = document.getElementById('assignmentList');
+            const li = document.createElement('li');
+            li.textContent = `${selectedResume} - ${selectedSlot}`;
+            assignmentList.appendChild(li);
+
+            // Remove assigned slot from available slots
+            slots.splice(selectedSlotIndex, 1);
+            localStorage.setItem('slots', JSON.stringify(slots));
+            updateSlots();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>-HYPHEN-</title>
+    <link rel="shortcut icon" type="image" href="photo_2023-03-14_12-05-38.jpg">
+</head>
+<style>
+    .image img{
+        width: 550px;
+        height: 550px;
+        position: absolute;
+        right: 0;
+        bottom: 2%;
+
+    }
+
+    .form-box{
+        position: absolute;
+    margin-top: 240px;
+    left: 20%;
+    bottom: 35%;
+    width: 400px;
+    height: 300px;
+    padding: 19px;
+    text-align: center;
+    border-radius: 5px;
+    background: #fff;
+    margin-left: 60px;
+    box-shadow: 0px 2px 10px 1px rgba(71, 71, 71, 0.52);
+    }
+
+    .form-box input{
+        width: 100%;
+        height: 56px;
+        margin-bottom: 20px;
+        font-family: Lucida Handwriting;
+        font-size: 20px;
+    }
+
+    .check-box input{
+        position: absolute;
+        height: 18%;
+        left: 5%;
+        width: 92%;
+        bottom: 10%;
+    }
+
+    .check-box p{
+        position: absolute;
+        left: 16%;
+        font-size: 20px;
+        top: 50%;
+    }
+
+    .check-box a{
+        position: absolute;
+        left: 33%;
+        top: 56%;
+    }
+
+    .check-box button{
+        position: absolute;
+        bottom: 10%;
+        left: 16%;
+        width: 313px;
+        height: 55px;
+        border-radius: 23px;
+        border: none;
+        font-size: 25px;
+        font-family:  Lucida Handwriting;;
+    }
+
+    .check-box button:hover{
+        background-color: #797676;
+    }
+    .check-box button:active{
+        background-color: rgb(169, 167, 166);
+        opacity: 0.7s;
+    }
+
+    .logo img{
+    position: absolute;
+    bottom: 67%;
+    right: 84%;
+}
+.tick input{
+    position: absolute;
+    height: 25px;
+    right: 40%;
+    top: 50%;
+    
+}
+
+.tick P{
+    position: absolute;
+    top: 48%;
+    right: 74%;
+    font-size: 15px;
+}
+.tick a{
+    position: absolute;
+    right: 50%;
+    top: 52%;
+}
+ </style>
+<body>
+    <div class="image">
+        <img src="Untitled design (1).png" alt="">
+
+    </div>
+    <div class="form-box">
+        <input type="text" id="email" placeholder="User-Name or I'd">
+        <input type="password" id="password" placeholder="Password">
+        <div class="check-box">
+            <input type="submit" value="login" class="Submit-btn" onclick="auth()"/>
+        </div>     
+        
+        <div class="tick">
+             <input class="tick" type = "checkbox" checked>
+
+            <p>I Agree </p>
+            <a href="#"> The condition</a>
+
+        </div>
+    </div>
+
+    <div class="logo">
+        <img  src="Hyphen 01.png" height="300px" alt="">
+    </div>
+
+    <script>
+        function auth(){
+            var email=document.getElementById("email").value;
+            var password=document.getElementById("password").value;
+            if(email=="pranay26052004@gmail.com" && password=="pranay123"){
+                window.location.assign("candidate_main.html");
+            }
+            
+                if(email=="anjali123@gmail.com" && password=="Anjali123"){
+                window.location.assign("candidate_main.html");
+            }
+            if(email=="kurabhargava5@gmail.com" && password=="bhargava123456789"){
+                window.location.assign("candidate_main.html");
+            }
+
+            else{
+                return;
+            }
+                
+            
+        }
+    </script>
+    
+</body>
+</html>

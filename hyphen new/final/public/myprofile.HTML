@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - HR Dashboard</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #000; /* Bright red */
+            color: #fff;
+            padding: 20px 0;
+            border-bottom: 3px solid #000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            background-color: #fff;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 2px solid #000;
+            margin: 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-container h2 {
+            color: #004b8d;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-info div {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .profile-info div:last-child {
+            border-bottom: none;
+        }
+
+        .profile-info div span {
+            font-weight: bold;
+            color: #555;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>HYPHEN AI</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="profile-container">
+        <h2>My Profile</h2>
+        <div class="profile-info">
+            <div>
+                <span>Name:</span>
+                <span>John Doe</span>
+            </div>
+            <div>
+                <span>Company:</span>
+                <span>XYZ Corporation</span>
+            </div>
+            <div>
+                <span>Position:</span>
+                <span>HR Manager</span>
+            </div>
+            <div>
+                <span>Email:</span>
+                <span>john.doe@xyzcorp.com</span>
+            </div>
+            <div>
+                <span>Phone:</span>
+                <span>+1 (555) 123-4567</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 HYPHEN AI. All rights reserved.</p>
+    </footer>
+</body>
+</html>

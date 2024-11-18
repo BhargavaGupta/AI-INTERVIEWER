@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Feedback Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-top: 15px;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .rating {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 300px;
+            margin-top: 10px;
+        }
+        .rating label {
+            margin: 0 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .acknowledgment {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            border-left: 5px solid #28a745;
+            color: #155724;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .next-page-btn {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .next-page-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            document.querySelector('.acknowledgment').style.display = 'block';
+            document.querySelector('.next-page-btn').style.display = 'inline-block';
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Interview Experience Feedback</h1>
+        <form onsubmit="handleSubmit(event)">
+
+            <label for="experience">Overall Experience with the Test:</label>
+            <select id="experience" name="experience" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Excellent">Excellent</option>
+                <option value="Good">Good</option>
+                <option value="Average">Average</option>
+                <option value="Poor">Poor</option>
+            </select>
+
+            <label for="difficulty">Difficulty Level of the Test:</label>
+            <select id="difficulty" name="difficulty" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Too Easy">Too Easy</option>
+                <option value="Easy">Easy</option>
+                <option value="Just Right">Just Right</option>
+                <option value="Difficult">Difficult</option>
+                <option value="Very Difficult">Very Difficult</option>
+            </select>
+
+            <label for="rating">Rating:</label>
+            <div class="rating">
+                <label><input type="radio" name="rating" value="1"> 1</label>
+                <label><input type="radio" name="rating" value="2"> 2</label>
+                <label><input type="radio" name="rating" value="3"> 3</label>
+                <label><input type="radio" name="rating" value="4"> 4</label>
+                <label><input type="radio" name="rating" value="5"> 5</label>
+            </div>
+
+            <label for="ai-accuracy">Accuracy of AI in Assessing Your Rating:</label>
+            <select id="ai-accuracy" name="ai-accuracy" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Very Accurate">Very Accurate</option>
+                <option value="Accurate">Accurate</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Inaccurate">Inaccurate</option>
+                <option value="Very Inaccurate">Very Inaccurate</option>
+            </select>
+
+            <label for="comments">Additional Feedback:</label>
+            <textarea id="comments" name="comments" placeholder="Share any other comments or suggestions here..."></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+        <div class="acknowledgment">
+            Thank you for your feedback! Your input has been successfully submitted.
+        </div>
+        <a href="thankyou.html" class="next-page-btn">Next</a>
+    </div>
+
+</body>
+</html>

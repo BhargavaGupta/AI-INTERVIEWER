@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Hyphen AI</title>
+    <link rel="stylesheet" href="vardhanstyle.css">
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Extract username and password from form
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Dummy check for demonstration purposes
+            if (username === 'workathon' && password === '12345678') {
+                window.location.href = 'candidate_main.html'; // Redirect to candidate.html on successful "login"
+            } else {
+                alert('Invalid credentials'); // Alert if the credentials are incorrect
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <img src="hyphenlogoimg.png" alt="Hyphen AI Logo" class="logo">
+            <h1>USER LOGIN</h1>
+            <form id="loginForm" onsubmit="handleFormSubmit(event)">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="login-button">Login</button>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

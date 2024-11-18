@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Mock Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 10px;
+            min-height: 70px;
+            border-bottom: #77A1D3 3px solid;
+        }
+
+        header h1 {
+            float: left;
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        nav {
+            float: right;
+            margin-top: 10px;
+        }
+
+        nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-left: 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        main {
+            padding: 20px;
+            background: #fff;
+            margin-top: 10px;
+        }
+
+        .intro {
+            margin-bottom: 20px;
+        }
+
+        .mock-test .question {
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .mock-test textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        .mock-test button {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .mock-test button:hover {
+            background: #555;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .timer, .result {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .result {
+            padding: 10px;
+            background: #f4f4f4;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .navigation {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Hyphen AI</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="intro">
+                <h2>Aptitude Test</h2>
+                <p>Prepare for your aptitude test with our comprehensive mock test. Answer the questions below to test your knowledge and get instant feedback.</p>
+                <div class="timer">Time Remaining: <span id="timer">10:00</span></div>
+            </section>
+
+            <section class="mock-test">
+                <form id="mockTestForm" onsubmit="calculateAccuracy(event)">
+                    <div class="navigation">
+                        <button type="button" id="prevBtn" onclick="changeQuestion(-1)">Previous</button>
+                        <button type="button" id="nextBtn" onclick="changeQuestion(1)">Next</button>
+                        <button type="submit" id="submitBtn" style="display: none;">Submit Answers</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="result" id="result"></section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Aptitude Test Prep. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        async function loadQuestions() {
+            // Fetch the CSV file
+            const response = await fetch('questions.csv');
+            const data = await response.text();
+
+            // Parse the CSV data
+            const rows = data.trim().split('\n').slice(1); // Skip the header
+            const questions = rows.map(row => {
+                const [question, answer] = row.split(',');
+                return { question, answer };
+            });
+
+            // Shuffle and pick 10 random questions
+            const shuffledQuestions = questions.sort(() => 0.5 - Math.random()).slice(0, 10);
+
+            // Insert the questions into the form
+            const form = document.getElementById('mockTestForm');
+            shuffledQuestions.forEach((q, index) => {
+                const div = document.createElement('div');
+                div.className = 'question';
+                div.id = `q${index}`;
+                div.style.display = index === 0 ? 'block' : 'none';
+
+                const label = document.createElement('label');
+                label.setAttribute('for', `q${index}textarea`);
+                label.textContent = `${index + 1}. ${q.question}`;
+
+                const textarea = document.createElement('textarea');
+                textarea.id = `q${index}textarea`;
+                textarea.name = `q${index}`;
+                textarea.rows = 2;
+                textarea.required = true;
+
+                div.appendChild(label);
+                div.appendChild(textarea);
+                form.insertBefore(div, document.querySelector('.navigation'));
+            });
+
+            // Store the correct answers for validation
+            window.answers = shuffledQuestions.reduce((acc, q, index) => {
+                acc[`q${index}`] = q.answer.trim();
+                return acc;
+            }, {});
+
+            // Show the first question
+            changeQuestion(0);
+        }
+
+        function simpleSimilarity(str1, str2) {
+            let commonChars = 0;
+            for (let i = 0; i < str1.length; i++) {
+                if (str2.includes(str1[i])) {
+                    commonChars++;
+                }
+            }
+            return (commonChars / Math.max(str1.length, str2.length)) * 100;
+        }
+
+        let currentQuestion = 0;
+
+        function changeQuestion(direction) {
+            const questions = document.querySelectorAll('.question');
+            questions[currentQuestion].style.display = 'none';
+            currentQuestion += direction;
+
+            if (currentQuestion < 0) currentQuestion = 0;
+            if (currentQuestion >= questions.length) currentQuestion = questions.length - 1;
+
+            questions[currentQuestion].style.display = 'block';
+            document.getElementById('prevBtn').style.display = currentQuestion === 0 ? 'none' : 'inline';
+            document.getElementById('nextBtn').style.display = currentQuestion === questions.length - 1 ? 'none' : 'inline';
+            document.getElementById('submitBtn').style.display = currentQuestion === questions.length - 1 ? 'inline' : 'none';
+        }
+
+        function calculateAccuracy(event) {
+            event.preventDefault();
+
+            let totalAccuracy = 0;
+            let count = 0;
+
+            for (let key in answers) {
+                const userAnswer = document.getElementById(`${key}textarea`).value.trim();
+                const correctAnswer = answers[key].trim();
+
+                const similarity = simpleSimilarity(userAnswer, correctAnswer);
+                totalAccuracy += similarity;
+                count++;
+            }
+
+            const averageAccuracy = (totalAccuracy / count).toFixed(2);
+            const feedback = provideFeedback(averageAccuracy);
+
+            document.getElementById('result').innerText = `Overall Accuracy: ${averageAccuracy}%\n${feedback}`;
+        }
+
+        function provideFeedback(accuracy) {
+            if (accuracy == 100) {
+                return "Excellent! You got it perfect.";
+            } else if (accuracy >= 80) {
+                return "Great job! You're very close.";
+            } else if (accuracy >= 60) {
+                return "Good effort, but there's room for improvement.";
+            } else if (accuracy >= 40) {
+                return "Not bad, but you might want to review the material.";
+            } else {
+                return "It seems there's a lot to review. Keep practicing!";
+            }
+        }
+
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            const interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    alert('Time is up! Submitting your answers.');
+                    document.getElementById('mockTestForm').submit();
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            loadQuestions();
+            const tenMinutes = 60 * 10;
+            const display = document.querySelector('#timer');
+            startTimer(tenMinutes, display);
+        };
+    </script>
+</body>
+</html>

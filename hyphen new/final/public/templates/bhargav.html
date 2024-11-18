@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Credentials</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        .credentials {
+            margin-top: 20px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Candidate Credentials</h1>
+        <p>Hello,</p>
+        <p>Below are your login details for the system:</p>
+        <div class="credentials">
+            <p><strong>User ID:</strong> <span id="userID"></span></p>
+            <p><strong>Password:</strong> <span id="password"></span></p>
+        </div>
+        <button id="sendEmail">Send Credentials via Email</button>
+    </div>
+
+    <script>
+        function generateUserID() {
+            return Math.floor(Math.random() * 900000000) + 100000000;
+        }
+
+        function generatePassword() {
+            const uppercase_letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const lowercase_letters = uppercase_letters.toLowerCase();
+            const digits = "0123456789";
+            const symbols = "()[]{},;:.-_/\\?+*#";
+            const all_letters_and_digits = uppercase_letters + lowercase_letters + digits;
+
+            let password = Array.from({ length: 19 }, () => all_letters_and_digits[Math.floor(Math.random() * all_letters_and_digits.length)]).join('');
+            const specialChar = symbols[Math.floor(Math.random() * symbols.length)];
+            const randomIndex = Math.floor(Math.random() * 20);
+
+            password = password.slice(0, randomIndex) + specialChar + password.slice(randomIndex);
+
+            return password;
+        }
+
+        const userID = generateUserID();
+        const password = generatePassword();
+        
+        document.getElementById('userID').textContent = userID;
+        document.getElementById('password').textContent = password;
+
+        document.getElementById('sendEmail').addEventListener('click', function() {
+            this.disabled = true;
+            fetch('/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: prompt("Please enter the recipient's email address:"),
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                document.getElementById('userID').textContent = data.user_id;
+                document.getElementById('password').textContent = data.password;
+                this.disabled = false;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to send email.');
+                this.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>

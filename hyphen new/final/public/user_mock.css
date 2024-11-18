@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #00aaff, #00ffdd);
+    color: #333;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 20px 0;
+    border-bottom: 3px solid #000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    background-color: #fff;
+    color: #00aaff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #00aaff;
+    margin: 0;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #00ffdd;
+}
+
+.auth-buttons {
+    display: flex;
+}
+
+.auth-buttons a {
+    margin-left: 15px;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: #00aaff;
+    background-color: #fff;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.auth-buttons a:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+main {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.mock-tests {
+    text-align: center;
+}
+
+.mock-tests h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #004b8d;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.test-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.test-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    margin-bottom: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.test-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #004b8d;
+}
+
+.test-card p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.test-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.start-test-btn {
+    padding: 10px 20px;
+    background-color: #00aaff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.start-test-btn:hover {
+    background-color: #0077cc;
+    transform: scale(1.1);
+}

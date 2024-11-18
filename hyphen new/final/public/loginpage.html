@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Hyphen AI</title>
+    <style>
+        /* Reset some default styles */
+        body, h1, form {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Set up the background */
+        body {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: rgb(196, 241, 13);
+        }
+
+        /* Center the login card */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .login-card {
+            background: #fff;
+            color: #333;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        /* Style the logo */
+        .logo {
+            width: 80px; /* Adjusted width for smaller logo */
+            margin-bottom: 1rem;
+        }
+
+        /* Style the heading */
+        h1 {
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: 1.75rem;
+        }
+
+        /* Style the form elements */
+        .input-group {
+            margin-bottom: 1rem;
+            text-align: left;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 0.875rem;
+        }
+
+        /* Eye icon styling */
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 70%; /* Adjusted from 50% to 60% */
+            transform: translateY(-50%);
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            background: #2575fc;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: green;
+        }
+
+        /* Style additional links */
+        .additional-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            align-items: center;
+        }
+
+        .additional-links a {
+            color: #3b25fc;
+            text-decoration: none;
+        }
+
+        .additional-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Style for the "Not a member yet?" text */
+        .register-text {
+            margin-right: 0.5rem;
+            color: #333;
+            font-size: 0.875rem;
+        }
+    </style>
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Extract username and password from form
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Dummy check for demonstration purposes
+            if (username === 'tasvardhan' && password === '12345678') {
+                window.location.href = 'candidate.html'; // Redirect to candidate.html on successful "login"
+            } else {
+                alert('Invalid credentials'); // Alert if the credentials are incorrect
+            }
+        }
+
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('togglePasswordIcon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.src = 'eye.png'; // Change to strikethrough eye icon
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.src = 'eyeoff.png'; // Change to normal eye icon
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <img src="logo.jpg" alt="Hyphen AI Logo" class="logo">
+            <h1>Login to Hyphen AI</h1>
+            <form id="loginForm" onsubmit="handleFormSubmit(event)">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <img id="togglePasswordIcon" class="toggle-password" src="eye.svg" alt="Toggle Password" onclick="togglePasswordVisibility()">
+                </div>
+                <button type="submit" class="login-button">Login</button>
+                <div class="additional-links">
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <div class="register-section">
+                        <span class="register-text">Not a member yet?</span>
+                        <a href="#" class="register-link">Register Here</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
